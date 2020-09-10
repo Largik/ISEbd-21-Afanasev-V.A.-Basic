@@ -28,13 +28,17 @@ namespace ship
         /// </summary>
         private int _pictureHeight;
         /// <summary>
-        /// Ширина отрисовки автомобиля
+        /// Высота окна отрисовки
+        /// </summary>
+        private int _maxHeight;
+        /// <summary>
+        /// Ширина отрисовки корабля
         /// </summary>
         private readonly int shipWidth = 120;
         /// <summary>
-        /// Высота отрисовки автомобиля
+        /// Высота отрисовки корабля
         /// </summary>
-        private readonly int shipHeight = 60;
+        private readonly int shipHeight = 58;
         /// <summary>
         /// Максимальная скорость
         /// </summary>
@@ -87,6 +91,14 @@ namespace ship
             Cabin = cabin;
             Line = line;
             Pipe = pipe;
+            if (Pipe)
+            {
+                _maxHeight = 45;
+            }
+            else
+            {
+                _maxHeight = 20;
+            }
         }
         /// <summary>
         /// Установка позиции корабля
@@ -139,7 +151,8 @@ namespace ship
                     break;
                 //вверх
                 case Direction.Up:
-                    if (_startPosY - step > 45)
+                   
+                    if (_startPosY - step > _maxHeight)
                     {
                         _startPosY -= step;
                     }

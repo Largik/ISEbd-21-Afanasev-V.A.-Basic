@@ -39,7 +39,7 @@ namespace ship
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            ship = new Ship(rnd.Next(1000, 3000), rnd.Next(10000, 50000), Color.Red, Color.Blue, false, false, false);
+            ship = new Ship(rnd.Next(1000, 3000), rnd.Next(10000, 50000), Color.Red, Color.Blue, true, true, true);
             ship.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxShip.Width,
             pictureBoxShip.Height);
             Draw();
