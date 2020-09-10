@@ -12,11 +12,11 @@ namespace ship
         
 
         /// <summary>
-        /// Левая координата отрисовки автомобиля
+        /// Левая координата отрисовки корабля
         /// </summary>
         private float _startPosX;
         /// <summary>
-        /// Правая кооридната отрисовки автомобиля
+        /// Правая кооридната отрисовки корабля
         /// </summary>
         private float _startPosY;
         /// <summary>
@@ -79,7 +79,7 @@ namespace ship
         /// <param name="cabin">Количество кают</param>
         /// <param name="line">Наличие полосы</param>
         /// <param name="pipe">Наличие труб</param>
-        /// <param name="mainColor">Основной цвет кузова</param>
+        /// <param name="mainColor">Основной цвет корабля</param>
         /// <param name="dopColor">Дополнительный цвет</param>
 
         public Ship(int maxSpeed, float weight, Color mainColor, Color dopColor, bool cabin, bool line, bool pipe)
@@ -174,7 +174,7 @@ namespace ship
         {
             Pen pen = new Pen(Color.Black);
             Brush brush = new SolidBrush(MainColor);
-    
+            SolidBrush brWh = new SolidBrush(Color.White);
             //Палуба
             Point plate1 = new Point((int)_startPosX,(int)_startPosY);
             Point plate2 = new Point((int)_startPosX + 12, (int)_startPosY + 24);
@@ -205,10 +205,7 @@ namespace ship
                 g.DrawCurve(pen, linePoints1);
                 g.DrawCurve(pen, linePoints2);
             }
-           
-
-
-            SolidBrush brWh = new SolidBrush(Color.White);
+                      
             //якорь
             g.FillEllipse(brWh, (int)_startPosX + 27, (int)_startPosY + 10, 13, 13);
             g.DrawEllipse(pen, (int)_startPosX + 27, (int)_startPosY + 10, 13, 13);
@@ -235,8 +232,8 @@ namespace ship
             Point FillCabinPoint5 = new Point((int)_startPosX + 106, (int)_startPosY + 1);
             Point[] fillCabin1 = { FillCabinPoint1, CabinPoint2, CabinPoint3, CabinPoint4, FillCabinPoint5 };
             g.FillClosedCurve(brush, fillCabin1);
-            Point[] curveCabin1 = { CabinPoint1, CabinPoint2, CabinPoint3, CabinPoint4, CabinPoint5 };
-            g.DrawCurve(pen, curveCabin1);
+            Point[] drawCabin1 = { CabinPoint1, CabinPoint2, CabinPoint3, CabinPoint4, CabinPoint5 };
+            g.DrawCurve(pen, drawCabin1);
             if (Cabin)
             { 
                 g.DrawEllipse(pen, (int)_startPosX + 23, (int)_startPosY - 10, 8, 8);

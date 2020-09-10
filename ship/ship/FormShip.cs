@@ -40,10 +40,8 @@ namespace ship
         {
             Random rnd = new Random();
             ship = new Ship(rnd.Next(1000, 3000), rnd.Next(10000, 50000), Color.Red, Color.Blue, true, true, true);
-            ship.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxShip.Width,
-            pictureBoxShip.Height);
+            ship.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxShip.Width, pictureBoxShip.Height);
             Draw();
-
         }
         /// <summary>
         /// Обработка нажатия кнопок управления
