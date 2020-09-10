@@ -30,7 +30,7 @@ namespace ship
         /// <summary>
         /// Ширина отрисовки автомобиля
         /// </summary>
-        private readonly int shipWidth = 100;
+        private readonly int shipWidth = 120;
         /// <summary>
         /// Высота отрисовки автомобиля
         /// </summary>
@@ -44,19 +44,19 @@ namespace ship
         /// </summary>
         public float Weight { private set; get; }
         /// <summary>
-        /// 1 труба
+        /// Количество кают
         /// </summary>
-        public bool Pipe1 { private set; get; }
+        public bool Cabin { private set; get; }
         /// <summary>
-        /// 2 труба
+        /// Полоса
         /// </summary>
-        public bool Pipe2 { private set; get; }
+        public bool Line { private set; get; }
         /// <summary>
-        /// 3 труба
+        /// Наличие труб
         /// </summary>
-        public bool Pipe3 { private set; get; }
+        public bool Pipe { private set; get; }
         /// <summary>
-        /// Основной цвет кузова
+        /// Основной цвет корабля
         /// </summary>
         /// 
         public Color MainColor { private set; get; }
@@ -70,20 +70,23 @@ namespace ship
         /// </summary>
         /// <param name="maxSpeed">Максимальная скорость</param>
         /// <param name="weight">Вес корабля</param>
-        /// <param name="pipe1">1 трубa</param>
-        /// <param name="pipe2">2 трубa</param>
-        /// <param name="pipe3">3 трубa</param>
+        /// /// <param name="mainColor">Основной цвет кузова</param>
+        /// <param name="dopColor">Дополнительный цвет</param>
+        /// <param name="cabin">Количество кают</param>
+        /// <param name="line">Наличие полосы</param>
+        /// <param name="pipe">Наличие труб</param>
         /// <param name="mainColor">Основной цвет кузова</param>
         /// <param name="dopColor">Дополнительный цвет</param>
 
-        public Ship(int maxSpeed, float weight, bool pipe1, bool pipe2, bool pipe3)
+        public Ship(int maxSpeed, float weight, Color mainColor, Color dopColor, bool cabin, bool line, bool pipe)
         {
-
             MaxSpeed = maxSpeed;
             Weight = weight;
-            Pipe1 = pipe1;
-            Pipe2 = pipe2;
-            Pipe3 = pipe3;
+            MainColor = mainColor;
+            DopColor = dopColor;
+            Cabin = cabin;
+            Line = line;
+            Pipe = pipe;
         }
         /// <summary>
         /// Установка позиции корабля
@@ -92,14 +95,22 @@ namespace ship
         /// <param name="y">Координата Y</param>
         /// <param name="width">Ширина картинки</param>
         /// <param name="height">Высота картинки</param>
-        public void SetPosition(int x, int y, int width, int height)
+        public void SetPosition(int x, int y, int width, int height )
         {
             _pictureWidth = width;
             _pictureHeight = height;
             if (x >=0 && x + shipWidth < width && y >=0 && shipHeight < height)
             {
                 _startPosX = x;
-                _startPosY = y + 45;
+                if (Pipe)
+                {
+                    _startPosY = y + 45;
+                }
+                else
+                {
+                    _startPosY = y;
+                }
+                
             }
 
         }
@@ -114,7 +125,7 @@ namespace ship
             {
                 // вправо
                 case Direction.Right:
-                    if (_startPosX + step < _pictureWidth - shipWidth - 20)
+                    if (_startPosX + step < _pictureWidth - shipWidth)
                     {
                         _startPosX += step;
                     }
@@ -149,30 +160,41 @@ namespace ship
         public void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
+            Brush brush = new SolidBrush(MainColor);
     
             //Палуба
-            Point point1 = new Point((int)_startPosX,(int)_startPosY);
-            Point point2 = new Point((int)_startPosX + 12, (int)_startPosY + 24);
-            Point point3 = new Point((int)_startPosX + 28, (int)_startPosY + 42);
-            Point point4 = new Point((int)_startPosX + 84, (int)_startPosY + 44);
-            Point point5 = new Point((int)_startPosX + 104, (int)_startPosY + 40);
-            Point point6 = new Point((int)_startPosX + 114, (int)_startPosY + 28);
-            Point point7 = new Point((int)_startPosX + 120, (int)_startPosY);
-            Point point8 = new Point((int)_startPosX + 4, (int)_startPosY + 10);
-            Point point9 = new Point((int)_startPosX + 66, (int)_startPosY + 14);
-            Point point10 = new Point((int)_startPosX + 118, (int)_startPosY + 14);
-            Point point11 = new Point((int)_startPosX + 8, (int)_startPosY + 16);
-            Point point12 = new Point((int)_startPosX + 66, (int)_startPosY + 20);
-            Point point13 = new Point((int)_startPosX + 116, (int)_startPosY + 20);
-            Point[] curvePoints1 = { point1, point2, point3 };
-            Point[] curvePoints2 = { point3, point4, point5,  point6, point7};
-            Point[] curvePoints3 = { point8, point9, point10 };
-            Point[] curvePoints4 = { point11, point12, point13 };
-            g.DrawCurve(pen, curvePoints1);
-            g.DrawCurve(pen, curvePoints2);
-            g.DrawLine(pen, point1, point7);
-            g.DrawCurve(pen, curvePoints3);
-            g.DrawCurve(pen, curvePoints4);            
+            Point plate1 = new Point((int)_startPosX,(int)_startPosY);
+            Point plate2 = new Point((int)_startPosX + 12, (int)_startPosY + 24);
+            Point plate3 = new Point((int)_startPosX + 28, (int)_startPosY + 42);
+            Point plate4 = new Point((int)_startPosX + 84, (int)_startPosY + 44);
+            Point plate5 = new Point((int)_startPosX + 104, (int)_startPosY + 40);
+            Point plate6 = new Point((int)_startPosX + 114, (int)_startPosY + 28);
+            Point plate7 = new Point((int)_startPosX + 120, (int)_startPosY);           
+            Point[] PlateForm1 = { plate1, plate2, plate3 };
+            Point[] PlateForm2 = { plate3, plate4, plate5,  plate6, plate7};
+            Point[] FillPlate = { plate1, plate3, plate7 };
+            g.DrawCurve(pen, PlateForm1);
+            g.DrawCurve(pen, PlateForm2);
+            g.DrawLine(pen, plate1, plate7);
+            g.FillPolygon(brush, PlateForm1);
+            g.FillPolygon(brush, PlateForm2);
+            g.FillPolygon(brush, FillPlate);
+            if (Line)
+            {
+                Point line1 = new Point((int)_startPosX + 4, (int)_startPosY + 10);
+                Point line2 = new Point((int)_startPosX + 66, (int)_startPosY + 14);
+                Point line3 = new Point((int)_startPosX + 118, (int)_startPosY + 14);
+                Point line4 = new Point((int)_startPosX + 8, (int)_startPosY + 16);
+                Point line5 = new Point((int)_startPosX + 66, (int)_startPosY + 20);
+                Point line6 = new Point((int)_startPosX + 116, (int)_startPosY + 20);
+                Point[] linePoints1 = { line1, line2, line3 };
+                Point[] linePoints2 = { line4, line5, line6 };
+                g.DrawCurve(pen, linePoints1);
+                g.DrawCurve(pen, linePoints2);
+            }
+           
+
+
             SolidBrush brWh = new SolidBrush(Color.White);
             //якорь
             g.FillEllipse(brWh, (int)_startPosX + 27, (int)_startPosY + 10, 13, 13);
@@ -188,23 +210,43 @@ namespace ship
             g.DrawRectangle(pen, (int)_startPosX + 33, (int)_startPosY + 20, 3, 10);
             g.FillRectangle(brWh, (int)_startPosX + 27, (int)_startPosY + 26, 14, 2);
             g.FillRectangle(brWh, (int)_startPosX + 34, (int)_startPosY + 21, 2, 10);
-            
+
             //каюты
+            brush = new SolidBrush(DopColor);
             Point CabinPoint1 = new Point((int)_startPosX + 10, (int)_startPosY);
+            Point FillCabinPoint1 = new Point((int)_startPosX + 18, (int)_startPosY + 1);
             Point CabinPoint2 = new Point((int)_startPosX + 26, (int)_startPosY - 14);
             Point CabinPoint3 = new Point((int)_startPosX + 84, (int)_startPosY - 13);
             Point CabinPoint4 = new Point((int)_startPosX + 105, (int)_startPosY - 10);
             Point CabinPoint5 = new Point((int)_startPosX + 114, (int)_startPosY);
+            Point FillCabinPoint5 = new Point((int)_startPosX + 106, (int)_startPosY + 1);
+            Point[] fillCabin1 = { FillCabinPoint1, CabinPoint2, CabinPoint3, CabinPoint4, FillCabinPoint5 };
+            g.FillClosedCurve(brush, fillCabin1);
             Point[] curveCabin1 = { CabinPoint1, CabinPoint2, CabinPoint3, CabinPoint4, CabinPoint5 };
             g.DrawCurve(pen, curveCabin1);
-            g.DrawEllipse(pen, (int)_startPosX + 23, (int)_startPosY - 10, 8, 8);
-            g.DrawEllipse(pen, (int)_startPosX + 42, (int)_startPosY - 10, 8, 8);
-            g.DrawEllipse(pen, (int)_startPosX + 61, (int)_startPosY - 9, 7, 7);
-            g.DrawEllipse(pen, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
-            g.DrawEllipse(pen, (int)_startPosX + 99, (int)_startPosY - 7, 5, 5);
-            
-            //1 труба
-            if (Pipe1)
+            if (Cabin)
+            { 
+                g.DrawEllipse(pen, (int)_startPosX + 23, (int)_startPosY - 10, 8, 8);
+                g.FillEllipse(brWh, (int)_startPosX + 23, (int)_startPosY - 10, 8, 8);
+                g.DrawEllipse(pen, (int)_startPosX + 42, (int)_startPosY - 10, 8, 8);
+                g.FillEllipse(brWh, (int)_startPosX + 42, (int)_startPosY - 10, 8, 8);
+                g.DrawEllipse(pen, (int)_startPosX + 61, (int)_startPosY - 9, 7, 7);
+                g.FillEllipse(brWh, (int)_startPosX + 61, (int)_startPosY - 9, 7, 7);
+                g.DrawEllipse(pen, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
+                g.FillEllipse(brWh, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
+                g.DrawEllipse(pen, (int)_startPosX + 99, (int)_startPosY - 7, 5, 5);
+                g.FillEllipse(brWh, (int)_startPosX + 99, (int)_startPosY - 7, 5, 5);
+            }
+            else
+            {
+                g.DrawEllipse(pen, (int)_startPosX + 42, (int)_startPosY - 10, 8, 8);
+                g.FillEllipse(brWh, (int)_startPosX + 42, (int)_startPosY - 10, 8, 8);
+                g.DrawEllipse(pen, (int)_startPosX + 61, (int)_startPosY - 9, 7, 7);
+                g.FillEllipse(brWh, (int)_startPosX + 61, (int)_startPosY - 9, 7, 7);
+                g.DrawEllipse(pen, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
+                g.FillEllipse(brWh, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
+            }
+            if (Pipe)
             {
                 Point pipe11 = new Point((int)_startPosX + 44, (int)_startPosY - 15);
                 Point pipe12 = new Point((int)_startPosX + 45, (int)_startPosY - 41);
@@ -225,10 +267,8 @@ namespace ship
                 g.DrawLine(pen, pipe14, pipe15);
                 g.DrawCurve(pen, PIPE12);
                 g.DrawCurve(pen, PIPE13);
-            }
-            //2 труба
-            if ( Pipe2)
-            {
+
+
                 Point pipe21 = new Point((int)_startPosX + 67, (int)_startPosY - 14);
                 Point pipe22 = new Point((int)_startPosX + 68, (int)_startPosY - 36);
                 Point pipe23 = new Point((int)_startPosX + 76, (int)_startPosY - 39);
@@ -236,7 +276,7 @@ namespace ship
                 Point pipe25 = new Point((int)_startPosX + 84, (int)_startPosY - 13);
                 Point pipe26 = new Point((int)_startPosX + 68, (int)_startPosY - 30);
                 Point pipe27 = new Point((int)_startPosX + 76, (int)_startPosY - 33);
-                Point pipe28 = new Point((int)_startPosX + 84, (int)_startPosY - 29); 
+                Point pipe28 = new Point((int)_startPosX + 84, (int)_startPosY - 29);
                 Point pipe29 = new Point((int)_startPosX + 68, (int)_startPosY - 26);
                 Point pipe210 = new Point((int)_startPosX + 76, (int)_startPosY - 29);
                 Point pipe211 = new Point((int)_startPosX + 84, (int)_startPosY - 25);
@@ -244,14 +284,12 @@ namespace ship
                 Point[] PIPE2 = { pipe22, pipe23, pipe24 };
                 Point[] PIPE22 = { pipe26, pipe27, pipe28 };
                 Point[] PIPE23 = { pipe29, pipe210, pipe211 };
-                g.DrawCurve(pen,PIPE2);
+                g.DrawCurve(pen, PIPE2);
                 g.DrawLine(pen, pipe24, pipe25);
                 g.DrawCurve(pen, PIPE22);
                 g.DrawCurve(pen, PIPE23);
-            }
-            //3 труба
-            if (Pipe3)
-            {
+
+
                 Point pipe31 = new Point((int)_startPosX + 87, (int)_startPosY - 13);
                 Point pipe32 = new Point((int)_startPosX + 88, (int)_startPosY - 30);
                 Point pipe33 = new Point((int)_startPosX + 95, (int)_startPosY - 32);
@@ -272,6 +310,8 @@ namespace ship
                 g.DrawCurve(pen, PIPE32);
                 g.DrawCurve(pen, PIPE33);
             }
+            
+            
         }
     }
 }

@@ -48,7 +48,7 @@
             // 
             // buttonCreate
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(12, 12);
+            this.buttonCreate.Location = new System.Drawing.Point(797, 12);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(75, 23);
             this.buttonCreate.TabIndex = 1;
@@ -59,6 +59,7 @@
             // buttonRight
             // 
             this.buttonRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRight.BackgroundImage = global::ship.Properties.Resources.iconfinder_icon_arrow_right_a_211619;
             this.buttonRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonRight.Location = new System.Drawing.Point(842, 419);
             this.buttonRight.Name = "buttonRight";
@@ -70,6 +71,7 @@
             // buttonDown
             // 
             this.buttonDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDown.BackgroundImage = global::ship.Properties.Resources.iconfinder_icon_arrow_down_a_211613;
             this.buttonDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonDown.Location = new System.Drawing.Point(806, 419);
             this.buttonDown.Name = "buttonDown";
@@ -81,6 +83,7 @@
             // buttonLeft
             // 
             this.buttonLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonLeft.BackgroundImage = global::ship.Properties.Resources.iconfinder_icon_arrow_left_a_211616;
             this.buttonLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonLeft.Location = new System.Drawing.Point(770, 419);
             this.buttonLeft.Name = "buttonLeft";
@@ -124,10 +127,10 @@
 
         private System.Windows.Forms.PictureBox pictureBoxShip;
         private System.Windows.Forms.Button buttonCreate;
-        private System.Windows.Forms.Button buttonRight;
-        private System.Windows.Forms.Button buttonDown;
-        private System.Windows.Forms.Button buttonLeft;
         protected System.Windows.Forms.Button buttonUp;
+        protected System.Windows.Forms.Button buttonRight;
+        protected System.Windows.Forms.Button buttonDown;
+        protected System.Windows.Forms.Button buttonLeft;
     }
 }
 
