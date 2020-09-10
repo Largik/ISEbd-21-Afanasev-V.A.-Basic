@@ -9,8 +9,6 @@ namespace ship
 {
     class Ship
     {
-        
-
         /// <summary>
         /// Левая координата отрисовки корабля
         /// </summary>
@@ -68,7 +66,6 @@ namespace ship
         /// Дополнительный цвет
         /// </summary>
         public Color DopColor { private set; get; }
-
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -81,7 +78,6 @@ namespace ship
         /// <param name="pipe">Наличие труб</param>
         /// <param name="mainColor">Основной цвет корабля</param>
         /// <param name="dopColor">Дополнительный цвет</param>
-
         public Ship(int maxSpeed, float weight, Color mainColor, Color dopColor, bool cabin, bool line, bool pipe)
         {
             MaxSpeed = maxSpeed;
@@ -121,10 +117,8 @@ namespace ship
                 else
                 {
                     _startPosY = y;
-                }
-                
+                }               
             }
-
         }
         /// <summary>
         /// Изменение направления пермещения
@@ -204,8 +198,7 @@ namespace ship
                 Point[] linePoints2 = { line4, line5, line6 };
                 g.DrawCurve(pen, linePoints1);
                 g.DrawCurve(pen, linePoints2);
-            }
-                      
+            }                      
             //якорь
             g.FillEllipse(brWh, (int)_startPosX + 27, (int)_startPosY + 10, 13, 13);
             g.DrawEllipse(pen, (int)_startPosX + 27, (int)_startPosY + 10, 13, 13);
@@ -220,7 +213,6 @@ namespace ship
             g.DrawRectangle(pen, (int)_startPosX + 33, (int)_startPosY + 20, 3, 10);
             g.FillRectangle(brWh, (int)_startPosX + 27, (int)_startPosY + 26, 14, 2);
             g.FillRectangle(brWh, (int)_startPosX + 34, (int)_startPosY + 21, 2, 10);
-
             //каюты
             brush = new SolidBrush(DopColor);
             Point CabinPoint1 = new Point((int)_startPosX + 10, (int)_startPosY);
@@ -258,6 +250,7 @@ namespace ship
             }
             if (Pipe)
             {
+                //труба1
                 Point pipe11 = new Point((int)_startPosX + 44, (int)_startPosY - 15);
                 Point pipe12 = new Point((int)_startPosX + 45, (int)_startPosY - 41);
                 Point pipe13 = new Point((int)_startPosX + 55, (int)_startPosY - 44);
@@ -277,8 +270,7 @@ namespace ship
                 g.DrawLine(pen, pipe14, pipe15);
                 g.DrawCurve(pen, PIPE12);
                 g.DrawCurve(pen, PIPE13);
-
-
+                //труба2
                 Point pipe21 = new Point((int)_startPosX + 67, (int)_startPosY - 14);
                 Point pipe22 = new Point((int)_startPosX + 68, (int)_startPosY - 36);
                 Point pipe23 = new Point((int)_startPosX + 76, (int)_startPosY - 39);
@@ -298,8 +290,7 @@ namespace ship
                 g.DrawLine(pen, pipe24, pipe25);
                 g.DrawCurve(pen, PIPE22);
                 g.DrawCurve(pen, PIPE23);
-
-
+                //труба3
                 Point pipe31 = new Point((int)_startPosX + 87, (int)_startPosY - 13);
                 Point pipe32 = new Point((int)_startPosX + 88, (int)_startPosY - 30);
                 Point pipe33 = new Point((int)_startPosX + 95, (int)_startPosY - 32);
@@ -319,9 +310,7 @@ namespace ship
                 g.DrawLine(pen, pipe34, pipe35);
                 g.DrawCurve(pen, PIPE32);
                 g.DrawCurve(pen, PIPE33);
-            }
-            
-            
+            }        
         }
     }
 }
