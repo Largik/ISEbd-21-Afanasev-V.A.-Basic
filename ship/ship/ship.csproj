@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultShip.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="FormShip.cs">
       <SubType>Form</SubType>
@@ -53,6 +54,8 @@
     <Compile Include="FormShip.Designer.cs">
       <DependentUpon>FormShip.cs</DependentUpon>
     </Compile>
+    <Compile Include="ITransport.cs" />
+    <Compile Include="Ship.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -60,7 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Ship.cs" />
+    <Compile Include="MotorShip.cs" />
     <EmbeddedResource Include="FormShip.resx">
       <DependentUpon>FormShip.cs</DependentUpon>
     </EmbeddedResource>

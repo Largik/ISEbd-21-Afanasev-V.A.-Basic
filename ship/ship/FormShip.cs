@@ -12,7 +12,7 @@ namespace ship
 {
     public partial class FormShip : Form
     {
-        private Ship ship;
+        private ITransport ship;
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -31,15 +31,29 @@ namespace ship
             pictureBoxShip.Image = bmp;
         }
         /// <summary>
-        /// Обработка нажатия кнопки "Создать"
+        /// Обработка нажатия кнопки "Создать корабль"
         /// </summary>
         /// /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            ship = new Ship(rnd.Next(1000, 3000), rnd.Next(10000, 50000), Color.Purple, Color.Blue, false, true, true);
-            ship.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxShip.Width, pictureBoxShip.Height);
+            ship = new DefaultShip(rnd.Next(1000, 3000), rnd.Next(10000, 50000), Color.Purple, Color.Blue);
+            ship.SetPosition(100, 100, pictureBoxShip.Width, pictureBoxShip.Height);
+            Draw();
+        }
+        /// <summary>
+        /// Обработка нажатия кнопки "Создать теплоход"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCreateMotorShip_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            ship = new MotorShip(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Purple,
+           Color.Blue, true, true, true);
+            ship.SetPosition(200, 100, pictureBoxShip.Width,
+           pictureBoxShip.Height);
             Draw();
         }
         /// <summary>
