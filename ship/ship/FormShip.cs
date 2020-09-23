@@ -21,13 +21,22 @@ namespace ship
             InitializeComponent();
         }
         /// <summary>
+        /// Передача корабля на форму
+        /// </summary>
+        /// <param name="ship"></param>
+        public void SetShip(ITransport ship)
+        {
+            this.ship = ship;
+            Draw();
+        }
+        /// <summary>
         /// Метод отрисовки Корабля
         /// </summary>
         private void Draw()
         {
             Bitmap bmp = new Bitmap(pictureBoxShip.Width, pictureBoxShip.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            ship.DrawTransport(gr);
+            ship?.DrawTransport(gr);
             pictureBoxShip.Image = bmp;
         }
         /// <summary>
