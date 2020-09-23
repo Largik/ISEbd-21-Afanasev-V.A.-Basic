@@ -22,6 +22,10 @@ namespace ship
         /// </summary>
         private readonly int pictureWidth;
         /// <summary>
+        /// Свободные места
+        /// </summary>
+        private int _placeFree;
+        /// <summary>
         /// Высота окна отрисовки
         /// </summary>
         private readonly int pictureHeight;
@@ -47,15 +51,31 @@ namespace ship
             pictureHeight = picHeight;
         }
         /// <summary>
+        /// Проверка на свободное место
+        /// </summary>
+        /// /// <param name="place">Место</param>
+        private bool isFullParking(T[] place)
+        {
+            if(_places == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
         /// Перегрузка оператора сложения
         /// Логика действия: на парковку добавляется корабль
         /// </summary>
         /// <param name="p">Парковка</param>
         /// <param name="ship">Добавляемый корабль</param>
         /// <returns></returns>
-        public static bool operator +(Parking<T> p, T ship)
+        public static T operator +(Parking<T> Port, T ship)
         {
-            // Прописать логику для сложения
+            Port.Place(ship);
+            return ship;
         }
         /// <summary>
         /// Перегрузка оператора вычитания
@@ -64,9 +84,23 @@ namespace ship
         /// <param name="p">Парковка</param>
         /// <param name="index">Индекс места, с которого пытаемся извлечь объект</param>
         /// <returns></returns>
-        public static T operator -(Parking<T> p, int index)
+        public static T operator -(Parking<T> Port, int index)
         {
-            // Прописать логику для вычитания
+            return Port._places[index];
+        }
+        private void Place(T ship)
+        {
+            _places[_placeFree] = ship;
+
+            if (_placeFree != _places.Length - 1 && !isFullParking(_places))
+            {
+                while (_places[_placeFree] != null)
+                {
+                    _placeFree++;
+                }
+            }
+            PosXforNewShip = _placeFree / _placeInColumn * _placeSizeWidth + 5;
+            PosYforNewShip = 105 + _placeFree % _placeInColumn * _placeSizeHeight;
         }
         /// <summary>
         /// Метод отрисовки парковки
