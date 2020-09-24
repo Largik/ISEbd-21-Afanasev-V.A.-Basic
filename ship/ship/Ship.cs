@@ -41,7 +41,6 @@ namespace ship
         /// Дополнительный цвет
         /// </summary>
         public Color DopColor { protected set; get; }
-
         /// <summary>
         /// Установка позиции корабля
         /// </summary>
@@ -55,7 +54,6 @@ namespace ship
             _pictureHeight = height;           
             _startPosX = x;
             _startPosY = y;
-         
         }
         public abstract void DrawTransport(Graphics g);
         public abstract void MoveTransport(Direction direction);

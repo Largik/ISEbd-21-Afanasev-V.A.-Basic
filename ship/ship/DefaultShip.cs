@@ -147,7 +147,6 @@ namespace ship
             g.FillEllipse(brWh, (int)_startPosX + 61, (int)_startPosY - 9, 7, 7);
             g.DrawEllipse(pen, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
             g.FillEllipse(brWh, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
-
         }
     }
 }
