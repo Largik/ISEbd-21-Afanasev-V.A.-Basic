@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ship
 {
@@ -16,11 +17,7 @@ namespace ship
         /// <summary>
         /// Высота отрисовки корабля
         /// </summary>
-        protected readonly int shipHeight = 58;
-        /// <summary>
-        /// Высота окна отрисовки
-        /// </summary>
-        private int _maxHeight;
+        protected readonly int shipHeight = 100;
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -45,12 +42,25 @@ namespace ship
         protected DefaultShip(int maxSpeed, float weight, Color mainColor, int shipWidth, int
        shipHeight)
         {
-            _maxHeight = 45;
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
             this.shipWidth = shipWidth;
             this.shipHeight = shipHeight;
+        }
+        /// <summary>
+        /// Установка позиции
+        /// </summary>
+        /// <param name="x">Координата X</param>
+        /// <param name="y">Координата Y</param>
+        /// <param name="width">Ширина картинки</param>
+        /// <param name="height">Высота картинки</param>
+        public override void SetPosition(int x, int y, int width, int height)
+        { 
+            _startPosX = x;
+            _startPosY = y;
+            _pictureWidth = width;
+            _pictureHeight = height;   
         }
         /// <summary>
         /// Изменение направления пермещения
@@ -78,7 +88,7 @@ namespace ship
                 //вверх
                 case Direction.Up:
 
-                    if (_startPosY - step > _maxHeight)
+                    if (_startPosY - shipHeight - step >= 0)
                     {
                         _startPosY -= step;
                     }
@@ -147,7 +157,6 @@ namespace ship
             g.FillEllipse(brWh, (int)_startPosX + 61, (int)_startPosY - 9, 7, 7);
             g.DrawEllipse(pen, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
             g.FillEllipse(brWh, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
-
         }
     }
 }

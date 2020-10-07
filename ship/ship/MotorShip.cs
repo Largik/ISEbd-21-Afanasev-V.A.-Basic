@@ -9,10 +9,7 @@ namespace ship
 {
     public class MotorShip : DefaultShip
     {
-        /// <summary>
-        /// Высота окна отрисовки
-        /// </summary>
-        private int _maxHeight;
+
         /// <summary>
         /// Количество кают
         /// </summary>
@@ -48,14 +45,6 @@ namespace ship
             Cabin = cabin;
             Line = line;
             Pipe = pipe;
-            if (Pipe)
-            {
-                _maxHeight = 45;
-            }
-            else
-            {
-                _maxHeight = 20;
-            }
         }  
         /// <summary>
         /// Отрисовка корабля

@@ -1,6 +1,6 @@
 ﻿namespace ship
 {
-    partial class FormParking
+    partial class FormPort
     {
         /// <summary>
         /// Required designer variable.
@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxParking = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPort = new System.Windows.Forms.PictureBox();
             this.buttonParkingShip = new System.Windows.Forms.Button();
             this.buttonMotorShip = new System.Windows.Forms.Button();
             this.groupBoxTakeShip = new System.Windows.Forms.GroupBox();
-            this.labelPlace = new System.Windows.Forms.Label();
-            this.maskedTextBoxPlaceShip = new System.Windows.Forms.MaskedTextBox();
             this.buttonTakeShip = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
+            this.maskedTextBoxPlaceShip = new System.Windows.Forms.MaskedTextBox();
+            this.labelPlace = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).BeginInit();
             this.groupBoxTakeShip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBoxParking
+            // pictureBoxPort
             // 
-            this.pictureBoxParking.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxParking.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxParking.Name = "pictureBoxParking";
-            this.pictureBoxParking.Size = new System.Drawing.Size(681, 450);
-            this.pictureBoxParking.TabIndex = 0;
-            this.pictureBoxParking.TabStop = false;
+            this.pictureBoxPort.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxPort.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxPort.Name = "pictureBoxPort";
+            this.pictureBoxPort.Size = new System.Drawing.Size(681, 450);
+            this.pictureBoxPort.TabIndex = 0;
+            this.pictureBoxPort.TabStop = false;
             // 
             // buttonParkingShip
             // 
@@ -80,22 +80,6 @@
             this.groupBoxTakeShip.TabStop = false;
             this.groupBoxTakeShip.Text = "Забрать корабль";
             // 
-            // labelPlace
-            // 
-            this.labelPlace.AutoSize = true;
-            this.labelPlace.Location = new System.Drawing.Point(6, 28);
-            this.labelPlace.Name = "labelPlace";
-            this.labelPlace.Size = new System.Drawing.Size(42, 13);
-            this.labelPlace.TabIndex = 4;
-            this.labelPlace.Text = "Место:";
-            // 
-            // maskedTextBoxPlaceShip
-            // 
-            this.maskedTextBoxPlaceShip.Location = new System.Drawing.Point(54, 25);
-            this.maskedTextBoxPlaceShip.Name = "maskedTextBoxPlaceShip";
-            this.maskedTextBoxPlaceShip.Size = new System.Drawing.Size(33, 20);
-            this.maskedTextBoxPlaceShip.TabIndex = 4;
-            // 
             // buttonTakeShip
             // 
             this.buttonTakeShip.Location = new System.Drawing.Point(12, 51);
@@ -106,7 +90,23 @@
             this.buttonTakeShip.UseVisualStyleBackColor = true;
             this.buttonTakeShip.Click += new System.EventHandler(this.buttonTakeShip_Click);
             // 
-            // FormParking
+            // maskedTextBoxPlaceShip
+            // 
+            this.maskedTextBoxPlaceShip.Location = new System.Drawing.Point(54, 25);
+            this.maskedTextBoxPlaceShip.Name = "maskedTextBoxPlaceShip";
+            this.maskedTextBoxPlaceShip.Size = new System.Drawing.Size(33, 20);
+            this.maskedTextBoxPlaceShip.TabIndex = 4;
+            // 
+            // labelPlace
+            // 
+            this.labelPlace.AutoSize = true;
+            this.labelPlace.Location = new System.Drawing.Point(6, 28);
+            this.labelPlace.Name = "labelPlace";
+            this.labelPlace.Size = new System.Drawing.Size(42, 13);
+            this.labelPlace.TabIndex = 4;
+            this.labelPlace.Text = "Место:";
+            // 
+            // FormPort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -114,10 +114,10 @@
             this.Controls.Add(this.groupBoxTakeShip);
             this.Controls.Add(this.buttonMotorShip);
             this.Controls.Add(this.buttonParkingShip);
-            this.Controls.Add(this.pictureBoxParking);
-            this.Name = "FormParking";
-            this.Text = "FormParking";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).EndInit();
+            this.Controls.Add(this.pictureBoxPort);
+            this.Name = "FormPort";
+            this.Text = "Port";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).EndInit();
             this.groupBoxTakeShip.ResumeLayout(false);
             this.groupBoxTakeShip.PerformLayout();
             this.ResumeLayout(false);
@@ -126,7 +126,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxParking;
+        private System.Windows.Forms.PictureBox pictureBoxPort;
         private System.Windows.Forms.Button buttonParkingShip;
         private System.Windows.Forms.Button buttonMotorShip;
         private System.Windows.Forms.GroupBox groupBoxTakeShip;
