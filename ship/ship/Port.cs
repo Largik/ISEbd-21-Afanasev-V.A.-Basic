@@ -44,6 +44,7 @@ namespace ship
         {
             get { return FreePlaces(_places); }
         }
+        public static int IsDraw { get; private set; } = 0;
         /// <summary>
         /// Следующий корабль
         /// </summary>
@@ -71,21 +72,6 @@ namespace ship
             _pictureHeight = picHeight;
         }
         /// <summary>
-        /// Проверка на свободное место
-        /// </summary>
-        /// /// <param name="place">Место</param>
-        private static bool isFullParking(T[] place)
-        {
-            foreach (var item in place)
-            {
-                if (item == null)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        /// <summary>
         /// Количество свободных мест
         /// </summary>
         /// /// <param name="place">Место</param>
@@ -103,49 +89,25 @@ namespace ship
             return freePlaces;
         }
         /// <summary>
-        /// Размещение корабля в порту
-        /// </summary>
-        /// /// <param name="ship">корабль</param>
-        private void PlaceShip(T ship)
-        {
-            _places[NextShip] = ship;
-
-            if (NextShip < _places.Length - 1 && !isFullParking(_places))
-            {
-                while (_places[NextShip] != null)
-                {
-                    NextShip++;
-                }
-            }
-            XShip = NextShip / _column * _placeSizeWidth + 5;
-            YShip = 50 + NextShip % _column * _placeSizeHeight;
-        }
-        /// <summary>
-        /// Забираем корабль с порта
-        /// </summary>
-        /// /// <param name="index"> индекс корабля</param>
-        public void takeShip(int index)
-        {
-            _places[index] = null;
-            NextShip = 0;
-            while (NextShip < _places.Length - 1 && _places[NextShip] != null)
-            {
-                NextShip++;
-            }
-            XShip = NextShip / _column * _placeSizeWidth + 5;
-            YShip = 105 + NextShip % _column * _placeSizeHeight;
-        }
-        /// <summary>
         /// Перегрузка оператора сложения
         /// Логика действия: на парковку добавляется корабль
         /// </summary>
         /// <param name="p">Парковка</param>
         /// <param name="ship">Добавляемый корабль</param>
         /// <returns></returns>
-        public static T operator +(Port<T> Port, T ship)
-        {
-            Port.PlaceShip(ship);
-            return ship;
+        public static bool operator +(Port<T> Port, T ship)
+        {    
+            for(int index = 0; index < Port._places.Length; index++)
+            {
+                if(Port._places[index] == null)
+                {
+                    Port._places[index] = ship;
+                    ship.SetPosition(index / Port._column * Port._placeSizeWidth + 5, 50 + index % Port._column * Port._placeSizeHeight,
+                    Port._pictureWidth, Port._pictureHeight);
+                    return true;
+                }
+            }
+            return false;
         }
         /// <summary>
         /// Перегрузка оператора вычитания
@@ -156,8 +118,18 @@ namespace ship
         /// <returns></returns>
         public static T operator -(Port<T> Port, int index)
         {
-            return Port._places[index];
+           if(index >= 0 && index < Port._places.Length)
+           {
+                T ship = Port._places[index];
+                Port._places[index] = null;
+                return ship;
+           }
+            else
+            {
+                return null;
+            }
         }
+
         /// <summary>
         /// Метод отрисовки парковки
         /// </summary>
