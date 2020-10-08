@@ -38,7 +38,7 @@ namespace ship
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            ship = new DefaultShip(rnd.Next(1000, 3000), rnd.Next(10000, 50000), Color.Purple, Color.Blue);
+            ship = new DefaultShip(rnd.Next(1000, 3000), rnd.Next(10000, 50000), Color.Purple);
             ship.SetPosition(100, 100, pictureBoxShip.Width, pictureBoxShip.Height);
             Draw();
         }

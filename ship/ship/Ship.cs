@@ -37,10 +37,7 @@ namespace ship
         /// Основной цвет 
         /// </summary>
         public Color MainColor { protected set; get; }
-        /// <summary>
-        /// Дополнительный цвет
-        /// </summary>
-        public Color DopColor { protected set; get; }
+       
         /// <summary>
         /// Установка позиции корабля
         /// </summary>

@@ -21,18 +21,20 @@ namespace ship
         /// Высота окна отрисовки
         /// </summary>
         private int _maxHeight;
+        private readonly Color DopColor;
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="maxSpeed">Максимальная скорость</param>
         /// <param name="weight">Вес корабля</param>
         /// <param name="mainColor">Основной цвет</param>
-        public DefaultShip(int maxSpeed, float weight, Color mainColor, Color dopColor)
+        public DefaultShip(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
-            DopColor = dopColor;
+            DopColor = Color.Green;
+
         }
         /// <summary>
         /// Конструкторс изменением размеров машины
@@ -42,13 +44,14 @@ namespace ship
         /// <param name="mainColor">Основной цвет</param>
         /// <param name="shipWidth">Ширина отрисовки корабля</param>
         /// <param name="shipHeight">Высота отрисовки корабля</param>
-        protected DefaultShip(int maxSpeed, float weight, Color mainColor, int shipWidth, int
+        protected DefaultShip(int maxSpeed, float weight, Color mainColor,Color dopColor, int shipWidth, int
        shipHeight)
         {
             _maxHeight = 45;
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
+            DopColor = dopColor;
             this.shipWidth = shipWidth;
             this.shipHeight = shipHeight;
         }

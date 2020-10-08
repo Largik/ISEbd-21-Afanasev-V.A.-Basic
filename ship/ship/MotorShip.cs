@@ -26,6 +26,10 @@ namespace ship
         /// </summary>
         public bool Pipe { private set; get; }
         /// <summary>
+        /// Дополнительный цвет
+        /// </summary>
+        public Color DopColor { protected set; get; }
+        /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="maxSpeed">Максимальная скорость</param>
@@ -39,7 +43,7 @@ namespace ship
         /// <param name="dopColor">Дополнительный цвет</param>
         public MotorShip(int maxSpeed, float weight, Color mainColor, 
             Color dopColor, bool cabin, bool line, bool pipe):
-            base(maxSpeed, weight, mainColor, 120, 58)
+            base(maxSpeed, weight, mainColor, dopColor, 120, 58)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
