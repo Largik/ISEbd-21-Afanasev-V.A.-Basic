@@ -18,7 +18,6 @@ namespace ship
         /// Объект от класса-парковки
         /// </summary>
         private readonly Port<DefaultShip> _port;
-        private DefaultShip _lastShip;
         public FormPort()
         {
             InitializeComponent();
@@ -82,7 +81,6 @@ namespace ship
                 }
             }
         }
-
         private void buttonTakeShip_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(maskedTextBoxPlaceShip.Text))

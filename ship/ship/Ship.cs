@@ -45,7 +45,6 @@ namespace ship
         /// <param name="width">Ширина картинки</param>
         /// <param name="height">Высота картинки</param>
         public abstract void SetPosition(int x, int y, int width, int height);
-       
         public abstract void DrawTransport(Graphics g);
         public abstract void MoveTransport(Direction direction);
     }

@@ -27,6 +27,5 @@ namespace ship
         /// </summary>
         /// <param name="g"></param>
         void DrawTransport(Graphics g);
-
     }
 }
