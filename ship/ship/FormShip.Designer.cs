@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.pictureBoxShip = new System.Windows.Forms.PictureBox();
-            this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
-            this.buttonCreateMotorShip = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxShip)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,16 +44,6 @@
             this.pictureBoxShip.Size = new System.Drawing.Size(884, 461);
             this.pictureBoxShip.TabIndex = 0;
             this.pictureBoxShip.TabStop = false;
-            // 
-            // buttonCreate
-            // 
-            this.buttonCreate.Location = new System.Drawing.Point(751, 12);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(121, 23);
-            this.buttonCreate.TabIndex = 1;
-            this.buttonCreate.Text = "Создать корабль";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // buttonRight
             // 
@@ -105,27 +93,15 @@
             this.buttonUp.UseVisualStyleBackColor = true;
             this.buttonUp.Click += new System.EventHandler(this.buttonMove_Click);
             // 
-            // buttonCreateMotorShip
-            // 
-            this.buttonCreateMotorShip.Location = new System.Drawing.Point(751, 50);
-            this.buttonCreateMotorShip.Name = "buttonCreateMotorShip";
-            this.buttonCreateMotorShip.Size = new System.Drawing.Size(121, 23);
-            this.buttonCreateMotorShip.TabIndex = 6;
-            this.buttonCreateMotorShip.Text = "Создать теплоход";
-            this.buttonCreateMotorShip.UseVisualStyleBackColor = true;
-            this.buttonCreateMotorShip.Click += new System.EventHandler(this.buttonCreateMotorShip_Click);
-            // 
             // FormShip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 461);
-            this.Controls.Add(this.buttonCreateMotorShip);
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.buttonLeft);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonRight);
-            this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.pictureBoxShip);
             this.Name = "FormShip";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -138,12 +114,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxShip;
-        private System.Windows.Forms.Button buttonCreate;
         protected System.Windows.Forms.Button buttonUp;
         protected System.Windows.Forms.Button buttonRight;
         protected System.Windows.Forms.Button buttonDown;
         protected System.Windows.Forms.Button buttonLeft;
-        private System.Windows.Forms.Button buttonCreateMotorShip;
     }
 }
 

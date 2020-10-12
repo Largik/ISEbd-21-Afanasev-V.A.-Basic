@@ -21,40 +21,23 @@ namespace ship
             InitializeComponent();
         }
         /// <summary>
+        /// Передача корабля на форму
+        /// </summary>
+        /// <param name="ship"></param>
+        public void SetShip(ITransport ship)
+        {
+            this.ship = ship;
+            Draw();
+        }
+        /// <summary>
         /// Метод отрисовки Корабля
         /// </summary>
         private void Draw()
         {
             Bitmap bmp = new Bitmap(pictureBoxShip.Width, pictureBoxShip.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            ship.DrawTransport(gr);
+            ship?.DrawTransport(gr);
             pictureBoxShip.Image = bmp;
-        }
-        /// <summary>
-        /// Обработка нажатия кнопки "Создать корабль"
-        /// </summary>
-        /// /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonCreate_Click(object sender, EventArgs e)
-        {
-            Random rnd = new Random();
-            ship = new DefaultShip(rnd.Next(1000, 3000), rnd.Next(10000, 50000), Color.Purple);
-            ship.SetPosition(100, 100, pictureBoxShip.Width, pictureBoxShip.Height);
-            Draw();
-        }
-        /// <summary>
-        /// Обработка нажатия кнопки "Создать теплоход"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonCreateMotorShip_Click(object sender, EventArgs e)
-        {
-            Random rnd = new Random();
-            ship = new MotorShip(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Purple,
-           Color.Blue, true, true, true);
-            ship.SetPosition(200, 100, pictureBoxShip.Width,
-           pictureBoxShip.Height);
-            Draw();
         }
         /// <summary>
         /// Обработка нажатия кнопок управления

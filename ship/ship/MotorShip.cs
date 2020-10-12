@@ -10,10 +10,6 @@ namespace ship
     public class MotorShip : DefaultShip
     {
         /// <summary>
-        /// Высота окна отрисовки
-        /// </summary>
-        private int _maxHeight;
-        /// <summary>
         /// Количество кают
         /// </summary>
         public bool Cabin { private set; get; }
@@ -41,8 +37,8 @@ namespace ship
         /// <param name="pipe">Наличие труб</param>
         /// <param name="mainColor">Основной цвет корабля</param>
         /// <param name="dopColor">Дополнительный цвет</param>
-        public MotorShip(int maxSpeed, float weight, Color mainColor, 
-            Color dopColor, bool cabin, bool line, bool pipe):
+        public MotorShip(int maxSpeed, float weight, Color mainColor,
+            Color dopColor, bool cabin, bool line, bool pipe) :
             base(maxSpeed, weight, mainColor, dopColor, 120, 58)
         {
             MaxSpeed = maxSpeed;
@@ -52,15 +48,7 @@ namespace ship
             Cabin = cabin;
             Line = line;
             Pipe = pipe;
-            if (Pipe)
-            {
-                _maxHeight = 45;
-            }
-            else
-            {
-                _maxHeight = 20;
-            }
-        }  
+        }
         /// <summary>
         /// Отрисовка корабля
         /// </summary>
@@ -68,7 +56,6 @@ namespace ship
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-           //Brush brush = new SolidBrush(MainColor);
             SolidBrush brWh = new SolidBrush(Color.White);
             base.DrawTransport(g);
             if (Line)
@@ -83,22 +70,9 @@ namespace ship
                 Point[] linePoints2 = { line4, line5, line6 };
                 g.DrawCurve(pen, linePoints1);
                 g.DrawCurve(pen, linePoints2);
-                g.FillEllipse(brWh, (int)_startPosX + 27, (int)_startPosY + 10, 13, 13);
-                g.DrawEllipse(pen, (int)_startPosX + 27, (int)_startPosY + 10, 13, 13);
-                g.DrawEllipse(pen, (int)_startPosX + 31, (int)_startPosY + 14, 6, 6);
-                g.DrawEllipse(pen, (int)_startPosX + 32, (int)_startPosY + 12, 4, 2);
-                g.DrawEllipse(pen, (int)_startPosX + 28, (int)_startPosY + 15, 2, 4);
-                g.DrawEllipse(pen, (int)_startPosX + 37, (int)_startPosY + 15, 2, 4);
-                g.DrawEllipse(pen, (int)_startPosX + 32, (int)_startPosY + 29, 4, 4);
-                g.DrawEllipse(pen, (int)_startPosX + 26, (int)_startPosY + 24, 3, 6);
-                g.DrawEllipse(pen, (int)_startPosX + 40, (int)_startPosY + 24, 3, 6);
-                g.DrawRectangle(pen, (int)_startPosX + 28, (int)_startPosY + 25, 12, 3);
-                g.DrawRectangle(pen, (int)_startPosX + 33, (int)_startPosY + 20, 3, 10);
-                g.FillRectangle(brWh, (int)_startPosX + 27, (int)_startPosY + 26, 14, 2);
-                g.FillRectangle(brWh, (int)_startPosX + 34, (int)_startPosY + 21, 2, 10);
-            }       
+            }
             if (Cabin)
-            { 
+            {
                 g.DrawEllipse(pen, (int)_startPosX + 23, (int)_startPosY - 10, 8, 8);
                 g.FillEllipse(brWh, (int)_startPosX + 23, (int)_startPosY - 10, 8, 8);
                 g.DrawEllipse(pen, (int)_startPosX + 42, (int)_startPosY - 10, 8, 8);
@@ -172,7 +146,7 @@ namespace ship
                 g.DrawLine(pen, pipe34, pipe35);
                 g.DrawCurve(pen, PIPE32);
                 g.DrawCurve(pen, PIPE33);
-            }        
+            }
         }
     }
 }

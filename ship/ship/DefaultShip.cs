@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ship
 {
@@ -16,11 +18,7 @@ namespace ship
         /// <summary>
         /// Высота отрисовки корабля
         /// </summary>
-        protected readonly int shipHeight = 58;
-        /// <summary>
-        /// Высота окна отрисовки
-        /// </summary>
-        private int _maxHeight;
+        protected readonly int shipHeight = 100;
         private readonly Color DopColor;
         /// <summary>
         /// Конструктор
@@ -34,7 +32,6 @@ namespace ship
             Weight = weight;
             MainColor = mainColor;
             DopColor = Color.Green;
-
         }
         /// <summary>
         /// Конструкторс изменением размеров машины
@@ -44,16 +41,29 @@ namespace ship
         /// <param name="mainColor">Основной цвет</param>
         /// <param name="shipWidth">Ширина отрисовки корабля</param>
         /// <param name="shipHeight">Высота отрисовки корабля</param>
-        protected DefaultShip(int maxSpeed, float weight, Color mainColor,Color dopColor, int shipWidth, int
+        protected DefaultShip(int maxSpeed, float weight, Color mainColor, Color dopColor, int shipWidth, int
        shipHeight)
         {
-            _maxHeight = 45;
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
             DopColor = dopColor;
             this.shipWidth = shipWidth;
             this.shipHeight = shipHeight;
+        }
+        /// <summary>
+        /// Установка позиции
+        /// </summary>
+        /// <param name="x">Координата X</param>
+        /// <param name="y">Координата Y</param>
+        /// <param name="width">Ширина картинки</param>
+        /// <param name="height">Высота картинки</param>
+        public override void SetPosition(int x, int y, int width, int height)
+        {
+            _startPosX = x;
+            _startPosY = y;
+            _pictureWidth = width;
+            _pictureHeight = height;
         }
         /// <summary>
         /// Изменение направления пермещения
@@ -80,8 +90,7 @@ namespace ship
                     break;
                 //вверх
                 case Direction.Up:
-
-                    if (_startPosY - step > _maxHeight)
+                    if (_startPosY - shipHeight - step >= 0)
                     {
                         _startPosY -= step;
                     }
