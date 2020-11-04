@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.pictureBoxPort = new System.Windows.Forms.PictureBox();
-            this.buttonCreateMotorShip = new System.Windows.Forms.Button();
-            this.buttonCreate = new System.Windows.Forms.Button();
             this.groupBoxTakeShip = new System.Windows.Forms.GroupBox();
             this.buttonTakeShip = new System.Windows.Forms.Button();
             this.maskedTextBoxPlaceShip = new System.Windows.Forms.MaskedTextBox();
@@ -40,6 +38,7 @@
             this.buttonAddPort = new System.Windows.Forms.Button();
             this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
             this.Ports = new System.Windows.Forms.Label();
+            this.buttonSetShip = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).BeginInit();
             this.groupBoxTakeShip.SuspendLayout();
             this.SuspendLayout();
@@ -52,26 +51,6 @@
             this.pictureBoxPort.Size = new System.Drawing.Size(686, 490);
             this.pictureBoxPort.TabIndex = 0;
             this.pictureBoxPort.TabStop = false;
-            // 
-            // buttonCreateMotorShip
-            // 
-            this.buttonCreateMotorShip.Location = new System.Drawing.Point(696, 320);
-            this.buttonCreateMotorShip.Name = "buttonCreateMotorShip";
-            this.buttonCreateMotorShip.Size = new System.Drawing.Size(120, 58);
-            this.buttonCreateMotorShip.TabIndex = 7;
-            this.buttonCreateMotorShip.Text = "Припарковать теплоход";
-            this.buttonCreateMotorShip.UseVisualStyleBackColor = true;
-            this.buttonCreateMotorShip.Click += new System.EventHandler(this.buttonCreateMotorShip_Click);
-            // 
-            // buttonCreate
-            // 
-            this.buttonCreate.Location = new System.Drawing.Point(696, 269);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(120, 45);
-            this.buttonCreate.TabIndex = 8;
-            this.buttonCreate.Text = "Припарковать корабль";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // groupBoxTakeShip
             // 
@@ -156,19 +135,28 @@
             this.Ports.TabIndex = 15;
             this.Ports.Text = "Порты:\r\n";
             // 
+            // buttonSetShip
+            // 
+            this.buttonSetShip.Location = new System.Drawing.Point(696, 320);
+            this.buttonSetShip.Name = "buttonSetShip";
+            this.buttonSetShip.Size = new System.Drawing.Size(120, 58);
+            this.buttonSetShip.TabIndex = 16;
+            this.buttonSetShip.Text = "Добавить корабль\r\n";
+            this.buttonSetShip.UseVisualStyleBackColor = true;
+            this.buttonSetShip.Click += new System.EventHandler(this.buttonSetShip_Click);
+            // 
             // FormPort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 490);
+            this.Controls.Add(this.buttonSetShip);
             this.Controls.Add(this.Ports);
             this.Controls.Add(this.textBoxNewLevelName);
             this.Controls.Add(this.buttonAddPort);
             this.Controls.Add(this.listBoxPorts);
             this.Controls.Add(this.buttonDeletePort);
             this.Controls.Add(this.groupBoxTakeShip);
-            this.Controls.Add(this.buttonCreate);
-            this.Controls.Add(this.buttonCreateMotorShip);
             this.Controls.Add(this.pictureBoxPort);
             this.Name = "FormPort";
             this.Text = "Порт";
@@ -183,8 +171,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxPort;
-        private System.Windows.Forms.Button buttonCreateMotorShip;
-        private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.GroupBox groupBoxTakeShip;
         private System.Windows.Forms.Button buttonTakeShip;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxPlaceShip;
@@ -194,5 +180,6 @@
         private System.Windows.Forms.Button buttonAddPort;
         private System.Windows.Forms.TextBox textBoxNewLevelName;
         private System.Windows.Forms.Label Ports;
+        private System.Windows.Forms.Button buttonSetShip;
     }
 }

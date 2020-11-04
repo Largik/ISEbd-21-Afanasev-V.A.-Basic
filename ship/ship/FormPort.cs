@@ -54,7 +54,6 @@ namespace ship
                 pictureBoxPort.Image = bmp;
             }
         }
-
         /// <summary>
         /// Обработка нажатия кнопки "Припарковать корабль"
         /// </summary>
@@ -158,6 +157,10 @@ namespace ship
                     portCollection.DelPort(textBoxNewLevelName.Text);
                     ReloadLevels();
                 }
+                if(listBoxPorts.Items.Count <= 0)
+                {
+                    pictureBoxPort.Image = null;
+                }
             }
         }
         /// <summary>
@@ -168,5 +171,26 @@ namespace ship
         {
             Draw();
         }
+        private void buttonSetShip_Click(object sender, EventArgs e)
+        {
+            var formCarConfig = new FormShipConfig();
+            formCarConfig.AddEvent(AddShip);
+            formCarConfig.Show();
+        }
+        private void AddShip(Ship ship)
+        {
+            if (ship != null && listBoxPorts.SelectedIndex > -1)
+            {
+                if ((portCollection[listBoxPorts.SelectedItem.ToString()]) + ship)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Корабль не удалось поставить");
+                }
+            }
+        }
+
     }
 }
