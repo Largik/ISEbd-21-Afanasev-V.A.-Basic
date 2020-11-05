@@ -16,7 +16,7 @@ namespace ship
         /// Переменная-выбранная машина
         /// </summary>
         Ship ship = null;
-        private event ShipDelegate eventAddShip;
+        private event Action<Ship> eventAddShip;
         public FormShipConfig()
         {
             InitializeComponent();
@@ -43,11 +43,11 @@ namespace ship
                 pictureBoxTypeShip.Image = bmp;
             }
         }
-        public void AddEvent(ShipDelegate ev)
+        public void AddEvent(Action<Ship> ev)
         {
             if (eventAddShip == null)
             {
-                eventAddShip = new ShipDelegate(ev);
+                eventAddShip = new Action<Ship>(ev);
             }
             else
             {
