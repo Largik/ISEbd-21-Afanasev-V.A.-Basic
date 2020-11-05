@@ -54,7 +54,6 @@ namespace ship
                 pictureBoxPort.Image = bmp;
             }
         }
-
         /// <summary>
         /// Обработка нажатия кнопки "Припарковать корабль"
         /// </summary>
