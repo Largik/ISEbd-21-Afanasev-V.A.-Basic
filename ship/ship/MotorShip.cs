@@ -95,8 +95,7 @@ namespace ship
                 g.FillEllipse(brWh, (int)_startPosX + 80, (int)_startPosY - 8, 6, 6);
                 g.DrawEllipse(pen, (int)_startPosX + 99, (int)_startPosY - 7, 5, 5);
                 g.FillEllipse(brWh, (int)_startPosX + 99, (int)_startPosY - 7, 5, 5);
-            }
-            
+            }  
         }
         public void SetDopColor(Color color)
         {

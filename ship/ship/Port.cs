@@ -111,7 +111,6 @@ namespace ship
                     _pictureWidth, _pictureHeight);
                 _places[i].DrawTransport(g);
             }
-
         }
         /// <summary>
         /// Метод отрисовки разметки парковочных мест
