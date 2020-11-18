@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ship
@@ -13,8 +7,8 @@ namespace ship
     public partial class FormPort : Form
     {
         /// <summary>
-         /// Объект от класса-коллекции парковок
-         /// </summary>
+        /// Объект от класса-коллекции парковок
+        /// </summary>
         private readonly PortCollection portCollection;
         public FormPort()
         {
@@ -156,7 +150,7 @@ namespace ship
                     portCollection.DelPort(textBoxNewLevelName.Text);
                     ReloadLevels();
                 }
-                if(listBoxPorts.Items.Count <= 0)
+                if (listBoxPorts.Items.Count <= 0)
                 {
                     pictureBoxPort.Image = null;
                 }
@@ -187,6 +181,44 @@ namespace ship
                 else
                 {
                     MessageBox.Show("Корабль не удалось поставить");
+                }
+            }
+        }
+        /// <summary>
+        /// Обработка нажатия пункта меню "Сохранить"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (portCollection.SaveData(saveFileDialog.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не сохранилось", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        /// <summary>
+        /// Обработка нажатия пункта меню "Загрузить"
+        /// </summary>
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (portCollection.LoadData(openFileDialog.FileName))
+                {
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ReloadLevels();
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
