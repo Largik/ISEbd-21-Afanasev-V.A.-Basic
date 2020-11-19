@@ -127,7 +127,6 @@ namespace ship
             {
                 return false;
             }
-
             using (StreamReader streamReader = new StreamReader(filename, System.Text.Encoding.Default))
             {
                 if (streamReader.ReadLine().Contains("PortCollection"))
@@ -138,7 +137,6 @@ namespace ship
                 {
                     return false;
                 }
-
                 Ship ship = null;
                 string key = string.Empty;
                 string line;
