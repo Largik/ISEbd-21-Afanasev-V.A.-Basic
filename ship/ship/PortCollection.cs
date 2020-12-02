@@ -87,7 +87,7 @@ namespace ship
         /// </summary>
         /// <param name="filename">Путь и имя файла</param>
         /// <returns></returns>
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             using (StreamWriter streamWriter = new StreamWriter(filename, false, System.Text.Encoding.Default))
             {
@@ -113,7 +113,6 @@ namespace ship
                         }
                     }
                 }
-                return true;
             }
         }
         /// <summary>
@@ -121,11 +120,11 @@ namespace ship
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             using (StreamReader streamReader = new StreamReader(filename, System.Text.Encoding.Default))
             {
@@ -135,7 +134,7 @@ namespace ship
                 }
                 else
                 {
-                    return false;
+                    throw new FileLoadException("Неверный формат файла");
                 }
                 Ship ship = null;
                 string key = string.Empty;
@@ -160,11 +159,11 @@ namespace ship
 
                         if (!(portStages[key] + ship))
                         {
-                            return false;
+                            throw new PortOverflowException();
                         }
+
                     }
                 }
-                return true;
             }
         }
     }

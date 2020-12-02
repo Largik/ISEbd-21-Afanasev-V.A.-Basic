@@ -76,7 +76,7 @@ namespace ship
         {
             if (Port._places.Count >= Port._maxCount)
             {
-                return false;
+                throw new PortOverflowException();
             }
             Port._places.Add(ship);
             return true;
@@ -92,7 +92,7 @@ namespace ship
         {
             if (index < -1 || index > Port._places.Count)
             {
-                return null;
+                throw new PortNotFoundException(index);
             }
             T ship = Port._places[index];
             Port._places.RemoveAt(index);
