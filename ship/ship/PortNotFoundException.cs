@@ -11,7 +11,7 @@ namespace ship
     /// </summary>
     public class PortNotFoundException : Exception
     {
-        public PortNotFoundException(int i) : base("Не найден автомобиль по месту " + i)
+        public PortNotFoundException(int i) : base("Не найден корабль по месту " + i)
         { }
     }
 }

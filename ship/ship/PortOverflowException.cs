@@ -7,7 +7,7 @@ namespace ship
     /// </summary>
     public class PortOverflowException : Exception
     {
-        public PortOverflowException() : base("На парковке нет свободных мест")
+        public PortOverflowException() : base("В порту нет свободных мест")
         { }
     }
 }

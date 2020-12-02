@@ -71,7 +71,7 @@ namespace ship
                         FormShip form = new FormShip();
                         form.SetShip(ship);
                         form.ShowDialog();
-                        logger.Info($"Изъят автомобиль {ship} с места{ maskedTextBoxPlaceShip.Text} ");
+                        logger.Info($"Изъят корабль {ship} с места { maskedTextBoxPlaceShip.Text} ");
 
                         Draw();
                     }
@@ -116,7 +116,7 @@ namespace ship
             {
                 if (MessageBox.Show($"Удалить порт { listBoxPorts.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    logger.Info($"Удалили парковку { listBoxPorts.SelectedItem.ToString()} ");
+                    logger.Info($"Удалили порт { listBoxPorts.SelectedItem.ToString()} ");
                     portCollection.DelPort(textBoxNewLevelName.Text);
                     ReloadLevels();
                 }
@@ -132,7 +132,7 @@ namespace ship
         /// <param name="sender"></param>
         private void listBoxPorts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            logger.Info($"Перешли на парковку{ listBoxPorts.SelectedItem.ToString()}");
+            logger.Info($"Перешли на порт { listBoxPorts.SelectedItem.ToString()}");
             Draw();
         }
         private void buttonSetShip_Click(object sender, EventArgs e)
@@ -150,7 +150,7 @@ namespace ship
                     if ((portCollection[listBoxPorts.SelectedItem.ToString()]) + ship)
                     {
                         Draw();
-                        logger.Info($"Добавлен автомобиль {ship}");
+                        logger.Info($"Добавлен корабль {ship}");
                     }
                     else
                     {
