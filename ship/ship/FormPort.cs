@@ -72,19 +72,19 @@ namespace ship
                         form.SetShip(ship);
                         form.ShowDialog();
                         logger.Info($"Изъят корабль {ship} с места { maskedTextBoxPlaceShip.Text} ");
-
+                        
                         Draw();
                     }
                 }
                 catch (PortNotFoundException ex)
                 {
-                    MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn(ex.Message);
+                    logger.Warn($"Корабль {maskedTextBoxPlaceShip.Text} не найден");
+                    MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);    
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn(ex.Message);
+                    logger.Warn($"Корабль {maskedTextBoxPlaceShip.Text} не найден");
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); 
                 }
             }
         }
@@ -114,7 +114,8 @@ namespace ship
         {
             if (listBoxPorts.SelectedIndex > -1)
             {
-                if (MessageBox.Show($"Удалить порт { listBoxPorts.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show($"Удалить порт { listBoxPorts.SelectedItem.ToString()}?", "Удаление", 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     logger.Info($"Удалили порт { listBoxPorts.SelectedItem.ToString()} ");
                     portCollection.DelPort(textBoxNewLevelName.Text);
@@ -152,20 +153,16 @@ namespace ship
                         Draw();
                         logger.Info($"Добавлен корабль {ship}");
                     }
-                    else
-                    {
-                        MessageBox.Show("Корабль не удалось поставить");
-                    }
                 }
                 catch (PortOverflowException ex)
                 {
+                    logger.Warn($"Порт {listBoxPorts.SelectedItem.ToString()} переполнен");
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn(ex.Message);
                 }
                 catch (Exception ex)
                 {
+                    logger.Warn("Корабль не поставлен");
                     MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn(ex.Message);
                 }
             }
         }
@@ -185,8 +182,8 @@ namespace ship
                 }
                 catch (Exception ex)
                 {
+                    logger.Warn("Не сохранено");
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn(ex.Message);
                 }
             }
         }
@@ -207,13 +204,13 @@ namespace ship
                 }
                 catch (PortOverflowException ex)
                 {
+                    logger.Warn($"Порт {listBoxPorts.SelectedItem.ToString()} переполнен");
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn(ex.Message);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn(ex.Message);
+                    logger.Warn("Не загружено");
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);   
                 }
             }
         }

@@ -90,7 +90,7 @@ namespace ship
         /// <returns></returns>
         public static T operator -(Port<T> Port, int index)
         {
-            if (index < -1 || index > Port._places.Count)
+            if (index < -1 || index > Port._places.Count || Port._places.Count == 0)
             {
                 throw new PortNotFoundException(index);
             }
