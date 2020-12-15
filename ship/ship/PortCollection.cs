@@ -83,34 +83,46 @@ namespace ship
             }
         }
         /// <summary>
+        /// Метод записи информации в файл
+        /// </summary>
+        /// <param name="text">Строка, которую следует записать</param>
+        /// <param name="stream">Поток для записи</param>
+        private void WriteToFile(string text, FileStream stream)
+        {
+            byte[] info = new UTF8Encoding(true).GetBytes(text);
+            stream.Write(info, 0, info.Length);
+        }
+        /// <summary>
         /// Сохранение информации по автомобилям на парковках в файл
         /// </summary>
         /// <param name="filename">Путь и имя файла</param>
-        /// <returns></returns>
         public void SaveData(string filename)
         {
-            using (StreamWriter streamWriter = new StreamWriter(filename, false, System.Text.Encoding.Default))
+            if (File.Exists(filename))
             {
-                streamWriter.WriteLine("PortCollection");
+                File.Delete(filename);
+            }
+            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            {
+                WriteToFile($"PortCollection{Environment.NewLine}", fs);
                 foreach (var level in portStages)
                 {
-                    streamWriter.WriteLine("Port" + separator + level.Key);
-
-                    Ship ship = null;
-                    for (int i = 0; (ship = level.Value.GetNext(i)) != null; i++)
+                    //Начинаем парковку
+                    WriteToFile($"Port{separator}{level.Key}{Environment.NewLine}",
+                    fs);
+                    foreach (ITransport ship in level.Value)
                     {
-                        if (ship != null)
+                        //Записываем тип мшаины
+                        if (ship.GetType().Name == "DefaultShip")
                         {
-                            if (ship.GetType().Name == "DefaultShip")
-                            {
-                                streamWriter.Write("DefaultShip" + separator);
-                            }
-                            if (ship.GetType().Name == "MotorShip")
-                            {
-                                streamWriter.Write("MotorShip" + separator);
-                            }
-                            streamWriter.WriteLine(ship);
+                            WriteToFile($"DefaultShip{separator}", fs);
                         }
+                        if (ship.GetType().Name == "MotorShip")
+                        {
+                            WriteToFile($"MotorShip{separator}", fs);
+                        }
+                        //Записываемые параметры
+                        WriteToFile(ship + Environment.NewLine, fs);
                     }
                 }
             }
@@ -119,50 +131,57 @@ namespace ship
         /// Загрузка нформации по автомобилям на парковках из файла
         /// </summary>
         /// <param name="filename"></param>
-        /// <returns></returns>
         public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
                 throw new FileNotFoundException();
             }
-            using (StreamReader streamReader = new StreamReader(filename, System.Text.Encoding.Default))
+            string bufferTextFromFile = "";
+            using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
-                if (streamReader.ReadLine().Contains("PortCollection"))
+                byte[] b = new byte[fs.Length];
+                UTF8Encoding temp = new UTF8Encoding(true);
+                while (fs.Read(b, 0, b.Length) > 0)
                 {
-                    portStages.Clear();
+                    bufferTextFromFile += temp.GetString(b);
                 }
-                else
+            }
+            bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
+            var strs = bufferTextFromFile.Split('\n');
+            if (strs[0].Contains("PortCollection"))
+            {
+                portStages.Clear();
+            }
+            else
+            {
+                throw new FileLoadException("Неверный формат файла");
+            }
+            Ship ship = null;
+            string key = string.Empty;
+            for (int i = 1; i < strs.Length; ++i)
+            {
+                if (strs[i].Contains("Port"))
                 {
-                    throw new FileLoadException("Неверный формат файла");
+                    key = strs[i].Split(separator)[1];
+                    portStages.Add(key, new Port<Ship>(pictureWidth, pictureHeight));
+                    continue;
                 }
-                Ship ship = null;
-                string key = string.Empty;
-                string line;
-                for (int i = 0; (line = streamReader.ReadLine()) != null; i++)
+                if (string.IsNullOrEmpty(strs[i]))
                 {
-                    if (line.Contains("Port"))
-                    {
-                        key = line.Split(separator)[1];
-                        portStages.Add(key, new Port<Ship>(pictureWidth, pictureHeight));
-                    }
-                    else if (line.Contains(separator))
-                    {
-                        if (line.Contains("DefaultShip"))
-                        {
-                            ship = new DefaultShip(line.Split(separator)[1]);
-                        }
-                        else if (line.Contains("MotorShip"))
-                        {
-                            ship = new MotorShip(line.Split(separator)[1]);
-                        }
-
-                        if (!(portStages[key] + ship))
-                        {
-                            throw new PortOverflowException();
-                        }
-
-                    }
+                    continue;
+                }
+                if (strs[i].Split(separator)[0] == "DefaultShip")
+                {
+                    ship = new DefaultShip(strs[i].Split(separator)[1]);
+                }
+                else if (strs[i].Split(separator)[0] == "MotorShip")
+                {
+                    ship = new MotorShip(strs[i].Split(separator)[1]);
+                }
+                if (!(portStages[key] + ship))
+                {
+                    throw new PortOverflowException();
                 }
             }
         }

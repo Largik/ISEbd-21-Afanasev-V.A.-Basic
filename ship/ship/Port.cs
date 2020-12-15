@@ -12,7 +12,8 @@ namespace ship
     /// Параметризованный класс для хранения набора объектов от интерфейса ITransport
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class Port<T> where T : class, ITransport
+    class Port<T> : IEnumerator<T>, IEnumerable<T>
+        where T : class, ITransport
     {
         /// <summary>
         /// Список объектов, которые храним
@@ -50,6 +51,9 @@ namespace ship
         /// Координата Y для следующего
         /// </summary>
         public int YShip { get; private set; } = 50;
+        private int _currentIndex;
+        public T Current => _places[_currentIndex];
+        object IEnumerator.Current => _places[_currentIndex];
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -64,6 +68,7 @@ namespace ship
             _pictureWidth = picWidth;
             _pictureHeight = picHeight;
             _places = new List<T>();
+            _currentIndex = -1;
         }
         /// <summary>
         /// Перегрузка оператора сложения
@@ -77,6 +82,10 @@ namespace ship
             if (Port._places.Count >= Port._maxCount)
             {
                 throw new PortOverflowException();
+            }
+            if (Port._places.Contains(ship))
+            { 
+                throw new PortAlreadyHaveException();
             }
             Port._places.Add(ship);
             return true;
@@ -142,6 +151,45 @@ namespace ship
                 return null;
             }
             return _places[index];
+        }
+        ///<summary>
+        ///Сортировка автомобилей на парковке
+        ///</summary>
+        public void Sort() => _places.Sort((IComparer<T>)new ShipComparer());
+        ///<summary>
+        ///Метод интерфейса IEnumerator, вызываемый при удалении объекта
+        ///</summary>
+        public void Dispose()
+        {
+        }
+        ///<summary>
+        ///Метод интерфейса IEnumerator для перехода к следующему элементу или началу коллекции
+        ///</summary>
+        ///<returns></returns>
+        public bool MoveNext()
+        {
+            //Реализовать логику
+        }
+        ///<summary>
+        ///Метод интерфейса IEnumerator для сброса и возврата к началу коллекции
+        ///</summary>
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+        ///<summary>
+        ///Метод интерфейса IEnumerable
+        ///</summary>
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+        ///<summary>
+        ///Метод интерфейса IEnumerable
+        ///</summary>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
         }
     }
 }

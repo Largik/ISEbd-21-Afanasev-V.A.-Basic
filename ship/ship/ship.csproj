@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="ITransport.cs" />
     <Compile Include="Port.cs" />
+    <Compile Include="PortAlreadyHaveException.cs" />
     <Compile Include="PortCollection.cs" />
     <Compile Include="PortNotFoundException.cs" />
     <Compile Include="PortOverflowException.cs" />
@@ -88,6 +89,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="MotorShip.cs" />
+    <Compile Include="ShipComparer.cs" />
     <EmbeddedResource Include="FormPort.resx">
       <DependentUpon>FormPort.cs</DependentUpon>
     </EmbeddedResource>

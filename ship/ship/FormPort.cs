@@ -214,5 +214,14 @@ namespace ship
                 }
             }
         }
+        private void ButtonSort_Click(object sender, EventArgs e)
+        {
+            if (listBoxPorts.SelectedIndex > -1)
+            {
+                portCollection[listBoxPorts.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
+            }
+        }
     }
 }

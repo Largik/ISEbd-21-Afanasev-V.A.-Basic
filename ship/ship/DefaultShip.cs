@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ship
 {
-    public class DefaultShip : Ship
+    public class DefaultShip : Ship, IEquatable<DefaultShip>
     {
         /// <summary>
         /// Ширина отрисовки корабля
@@ -48,7 +42,7 @@ namespace ship
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
-        }       
+        }
         /// <summary>
         /// Конструктор с изменением размеров машины
         /// </summary>
@@ -112,7 +106,7 @@ namespace ship
                     break;
                 //вниз
                 case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - shipHeight*2)
+                    if (_startPosY + step < _pictureHeight - shipHeight * 2)
                     {
                         _startPosY += step;
                     }
@@ -179,5 +173,44 @@ namespace ship
         {
             return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
+        public bool Equals(DefaultShip other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is DefaultShip defShipObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(defShipObj);
+            }
+        } 
     }
 }
