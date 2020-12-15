@@ -125,7 +125,28 @@ namespace ship
         }
         public bool Equals(MotorShip other)
         {
-            // Реализовать метод сравнения для дочернего класса
+            var res = base.Equals(other);
+            if (!res)
+            {
+                return res;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (Cabin != other.Cabin)
+            {
+                return false;
+            }
+            if (Line != other.Line)
+            {
+                return false;
+            }
+            if (Pipe != other.Pipe)
+            {
+                return false;
+            }
+            return true;
         }
         public override bool Equals(Object obj)
         {

@@ -12,11 +12,19 @@ namespace ship
         {
             if( x is DefaultShip && y is DefaultShip)
             {
-                ComparerDefaultShip((DefaultShip)x, (DefaultShip)y);
+                return ComparerDefaultShip((DefaultShip)x, (DefaultShip)y);
             }
             if (x is MotorShip && y is MotorShip)
             {
-                ComparerMotorShip((MotorShip)x, (MotorShip)y);
+                return ComparerMotorShip((MotorShip)x, (MotorShip)y);
+            }
+            if (x is DefaultShip && y is MotorShip)
+            {
+                return 1;
+            }
+            if (x is MotorShip && y is DefaultShip)
+            {
+                return -1;
             }
             return 0;
         }

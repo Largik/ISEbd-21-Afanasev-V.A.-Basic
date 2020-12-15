@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace ship
 {
@@ -168,7 +169,8 @@ namespace ship
         ///<returns></returns>
         public bool MoveNext()
         {
-            //Реализовать логику
+            _currentIndex++;
+            return (_currentIndex < _places.Count);
         }
         ///<summary>
         ///Метод интерфейса IEnumerator для сброса и возврата к началу коллекции
