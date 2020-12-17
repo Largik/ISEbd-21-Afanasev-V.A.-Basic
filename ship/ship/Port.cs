@@ -13,7 +13,7 @@ namespace ship
     /// Параметризованный класс для хранения набора объектов от интерфейса ITransport
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class Port<T> : IEnumerator<T>, IEnumerable<T>
+    public class Port<T> : IEnumerator<T>, IEnumerable<T>
         where T : class, ITransport
     {
         /// <summary>
@@ -154,7 +154,7 @@ namespace ship
             return _places[index];
         }
         ///<summary>
-        ///Сортировка автомобилей на парковке
+        ///Сортировка кораблей на парковке
         ///</summary>
         public void Sort() => _places.Sort((IComparer<T>)new ShipComparer());
         ///<summary>
